@@ -8,29 +8,36 @@ def new_file()
     new_f.close
 end
 
-def date_check()
+def date_check(time)
+    year = Time.now.strftime("%y")
+    month = Time.now.strftime("%m")
 
+    if Dir.exist?(time) == false
+        print Dir.exist?(time)
+        Dir.mkdir(time)
+    end
+    # Dir.chdir(year)
+    # Dir.mkdir(month)
 
 end
 
 def new_folder()
-    i = 0
-    year_list = [2021, 2022, 2023, 2022]
+
     year = Time.now.strftime("%y")
-    while i < year_list.length
-        if year_list[i] != year
-            Dir.mkdir(year)
-            year_list.append(year)
-        else
-            i += 1
-        end
-
-    end
-
     month = Time.now.strftime("%m")
-    m = Time.now.strftime("%m")
+
+    date_check(year)
+    Dir.chdir(year)
+    date_check(month)
 
 end
 
 
-puts new_folder()
+
+
+def kombo()
+    new_folder()
+    new_file()
+end
+
+puts kombo()

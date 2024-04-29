@@ -13,27 +13,28 @@ def dagobok(svar)
     
         if svar.downcase == "ny sida"
             puts "Vad ska den heta? Om du ångrar dig, skriv färdig"
-                title = gets.chomp
+              title = gets.chomp + " " + Time.now.strftime("[%d-%m-%Y]")
             if title.downcase != "färdig"
-                puts "Nu kan du skriva och om du känner dig färdig, skriv färdig"
                 if i > 0 
-                    new_file = File.open("#{title}.txt", "w")
-                end
-                while i > 0 
-                    ny_text = gets.chomp 
+                  new_file = File.open("#{title}.txt", "w")
+                end 
+                puts "Skri om din dag, tryck på enter för att bekräfta:"
+                new_file.puts(title +"\n"+"\n")
+                while i > 0
+                    ny_text = gets.chomp
                     if ny_text == "färdig"
                         i = 0 
                     end 
                     if i == 1 
                         new_file.puts(ny_text)
-                    end
+                    end 
                 end 
-                new_file.close 
+                new_file.close
             end 
         end 
-    
+
         if svar.downcase == "läs gammal"
-            puts "Vad ska den heta? Om du ångrar dig, skriv färdig"
+            puts "Vad heter den? Om du ångrar dig, skriv färdig"
             sida = gets.chomp
             if sida.downcase != "färdig"
                puts "Nu kan du skriva och om du känner dig färdig, skriv färdig"

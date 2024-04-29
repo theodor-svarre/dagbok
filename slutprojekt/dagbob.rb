@@ -1,6 +1,6 @@
 def new_file()
     print "title: "
-    title = gets.chomp+Time.now.strftime(" [%d-%m-%Y]")
+    title = gets.chomp+Time.now.strftime("[%d-%m-%Y]")
     new_f = File.open(title, "w")
     print "write about your day - press enter to confirm: "
     content = gets.chomp

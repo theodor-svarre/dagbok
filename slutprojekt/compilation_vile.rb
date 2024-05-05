@@ -24,6 +24,7 @@ def new_file()
     end 
     new_f.puts(title+"\n"+"\n"+content)
     new_f.close
+    Dir.chdir("years/#{year}/#{month}")
 end
 
 def date_check()
@@ -44,14 +45,24 @@ def read()
     puts "välj mellan följande år:"
     puts Dir.entries("years/") 
     y_input = gets.chomp
-    
-    puts Dir.entries("years/#{y_input}") 
 
     puts "välj mellan följande månader:"
     puts Dir.entries("years/#{y_input}") 
     m_input = gets.chomp
     
+
+    puts "välj mellan följande anteckningar:"
     puts Dir.entries("years/#{y_input}/#{m_input}") 
+    d_input = gets.chomp
+
+    # Öppna filen för läsning (läget 'r' står för "read")
+    puts "den här dagen skrev du följande:"
+    File.open("years/#{y_input}/#{m_input}/#{d_input}", "r") { |file|
+        # Läs varje rad i filen och skriv ut den till terminalen
+        file.each_line { |line|
+        puts line
+        }
+    }
 end
 
 ###############################################################################################

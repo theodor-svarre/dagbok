@@ -1,4 +1,10 @@
 def new_file()
+    year = Time.now.strftime("%y")
+    month = Time.now.strftime("%m")
+
+    # Dir.chdir(year)
+    Dir.chdir("years/#{year}")
+    # dir = File.dirname(month)
     print "title: "
     title = gets.chomp+Time.now.strftime(" [%d-%m-%Y]")
     new_f = File.open(title, "w")
@@ -8,16 +14,17 @@ def new_file()
     new_f.close
 end
 
-def date_check(time)
+def date_check()
     year = Time.now.strftime("%y")
     month = Time.now.strftime("%m")
 
-    if Dir.exist?(time) == false
-        print Dir.exist?(time)
-        Dir.mkdir(time)
+    if Dir.exist?("years/#{year}") == false
+        Dir.mkdir("years/#{year}")
     end
-    # Dir.chdir(year)
-    # Dir.mkdir(month)
+
+    if Dir.exist?("years/#{year}/#{month}") == false
+        Dir.mkdir("years/#{year}/#{month}")
+    end
 
 end
 
@@ -32,7 +39,16 @@ def new_folder()
 
 end
 
-
+def create_file(path, extension)
+    dir = File.dirname(path)
+  
+    unless File.directory?(dir)
+      FileUtils.mkdir_p(dir)
+    end
+  
+    path << ".#{extension}"
+    File.new(path, 'w')
+  end
 
 
 def kombo()
@@ -41,7 +57,11 @@ def kombo()
 end
 
 def read()
-    puts Dir.entries("slutprojekt/years") 
+    puts "välj mellan följande år:"
+    puts Dir.entries("years") 
+    input = gets.chomp
+    
+    puts Dir.entries("years/#{input}") 
 end
 
 print read()

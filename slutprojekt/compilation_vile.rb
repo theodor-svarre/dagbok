@@ -2,6 +2,12 @@
 
 def new_file()
     i = 1
+    year = Time.now.strftime("%y")
+    month = Time.now.strftime("%m")
+
+    date_check()
+
+    Dir.chdir("years/#{year}/#{month}")
     print "titel: "
     title = gets.chomp+Time.now.strftime(" [%d-%m-%Y]")
     new_f = File.open(title, "w")
@@ -11,13 +17,41 @@ def new_file()
         content = ""
         new_content = gets.chomp
         if new_content == "/stäng"
+            i = 0
         end 
-        if i == 1 
         content += new_content
-        end 
+
     end 
     new_f.puts(title+"\n"+"\n"+content)
     new_f.close
+end
+
+def date_check()
+    year = Time.now.strftime("%y")
+    month = Time.now.strftime("%m")
+
+    if Dir.exist?("years/#{year}") == false
+        Dir.mkdir("years/#{year}")
+    end
+
+    if Dir.exist?("years/#{year}/#{month}") == false
+        Dir.mkdir("years/#{year}/#{month}")
+    end
+
+end
+
+def read()
+    puts "välj mellan följande år:"
+    puts Dir.entries("years/") 
+    y_input = gets.chomp
+    
+    puts Dir.entries("years/#{y_input}") 
+
+    puts "välj mellan följande månader:"
+    puts Dir.entries("years/#{y_input}") 
+    m_input = gets.chomp
+    
+    puts Dir.entries("years/#{y_input}/#{m_input}") 
 end
 
 ###############################################################################################
@@ -26,7 +60,7 @@ def dagobok(svar)
     run_state = true
     while run_state == true
 
-        if svar.downcase == "/stäng dagboken"
+        if svar.downcase == "/stäng"
             run_state == false 
             return
         end 
@@ -55,22 +89,23 @@ def dagobok(svar)
         end 
        
     
-        if svar.downcase == "/gammal"
-            puts "vilken sida"
-            sida = gets.chomp
-            page = File.open("#{sida}.txt", "r")
-            puts page.read()
-            page.close()
-            page = File.open("#{sida}.txt", "a")
-            while i > 0 
-                ny_text = gets.chomp 
-                page.puts(ny_text)
-                if ny_text == "stäng sidan"
-                    i = 0 
-                end 
-            end 
-            page.close()
-          end 
+        if svar.downcase == "/läs"
+            read()
+            # puts "vilken sida"
+            # sida = gets.chomp
+            # page = File.open("#{sida}.txt", "r")
+            # puts page.read()
+            # page.close()
+            # page = File.open("#{sida}.txt", "a")
+            # while i > 0 
+            #     ny_text = gets.chomp 
+            #     page.puts(ny_text)
+            #     if ny_text == "/stäng"
+            #         i = 0 
+            #     end 
+            # end 
+            # page.close()
+        end 
         puts "Skriv '/ny' för att skapa ny skrivt och '/läs' för att läsa gamla"
         svar = gets.chomp
     end 

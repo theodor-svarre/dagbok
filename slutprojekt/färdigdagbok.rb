@@ -24,7 +24,7 @@ def new_file()
     
     # Datum:               06-05-2024
     # Namn:                Vile Kindstrand, Theodor Svarre
-        original_directory = Dir.pwd #sparadar den ursprungliga sökvägen, years
+        original_directory = Dir.pwd #sparadar den ursprungliga sökvägen
         date_check()
         year = Time.now.strftime("%Y")
         month = Time.now.strftime("%m")

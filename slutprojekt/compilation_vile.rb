@@ -63,11 +63,16 @@ end
 
 def date_check()
 # Beskrivning:         Hjälpfunktion som kollar vilket datum det är. Om en folder med sagda datum inte finns skapar den det
-# Variabel 1:          String - Tar ut vilket år det är m.h.a Time.now.strftime() metod
-# Variabel 2:          String - Tar ut vilken månad det är m.h.a Time.now.strftime() metod
+# Variabel 1:          String - "year" Tar ut vilket år det är m.h.a Time.now.strftime() metod
+# Variabel 2:          String - "month" Tar ut vilken månad det är m.h.a Time.now.strftime() metod
+# Argument 1:          Klass - Vi använder oss ej av argument i den här funktionen eftersom att de enda variablerna är beroende av tiden, vilket hämtas i början av funktionen. 
 
-# Return:              Om datum stämmer 
+# Return:              Om folders med datum ej finns (år respektive månad) skapas nödvändiga folders, annars sker ingenting
+
 # Exempel:  
+# puts Dir.exist?("years/#{year}") ==> False ==> skapar ny folder för år
+# puts Dir.exist?("years/#{year}/#{month}") ==> True ==> skip
+
 
 
 
@@ -88,6 +93,23 @@ def date_check()
 end
 
 def read()
+    # Beskrivning:         Hjälpfunktion som hanterar läsning av gamla filer genom att navigera genom folder
+# Variabel 1:          String - Tar ut vilket år det är m.h.a Time.now.strftime() metod
+# Variabel 2:          String - Tar ut vilken månad det är m.h.a Time.now.strftime() metod
+# Argument 1:          Klass - Vi använder oss ej av argument i den här funktionen eftersom att de enda variablerna är beroende av tiden, vilket hämtas i början av funktionen. 
+
+# Return:              Om folders med datum ej finns (år respektive månad) skapas nödvändiga folders, annars sker ingenting
+
+# Exempel:  
+# puts Dir.exist?("years/#{year}") ==> False ==> skapar ny folder för år
+# puts Dir.exist?("years/#{year}/#{month}") ==> True ==> skip
+
+
+
+
+
+# Datum:               06-05-2024
+# Namn:                Vile Kindstrand, Theodor Svarre
     puts "välj mellan följande år:"
     puts Dir.entries("years/") 
     y_input = gets.chomp

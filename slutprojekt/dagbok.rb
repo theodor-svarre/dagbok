@@ -150,35 +150,55 @@ def dagobok()
 # Beskrivning:         Hjälpfunktion som kollar vilket datum det är. Om en folder med sagda datum inte finns skapar den det
 # Variabel 1:          String - "year" Tar ut vilket år det är m.h.a Time.now.strftime() metod
 # Variabel 2:          String - "month" Tar ut vilken månad det är m.h.a Time.now.strftime() metod
-# Argument 1:          Klass - Vi använder oss ej av argument i den här funktionen eftersom att de enda variablerna är beroende av tiden, vilket hämtas i början av funktionen. 
+# Argument:          Klass - Vi använder oss ej av argument i den här funktionen eftersom att de enda variablerna är beroende av tiden, vilket hämtas i början av funktionen. 
 
 # Return:              Om folders med datum ej finns (år respektive månad) skapas nödvändiga folders, annars sker ingenting
 
 # Exempel:  
+
 # välj mellan följande år:
 # .
 # ..
 # 2022
 # 2024
+# input: 2300
+# År 2300 finns inte. Försök igen.
+# välj mellan följande år:        
+# .
+# ..
+# 2022
 # 2024
+# input: ergergf
+# År ergergf finns inte. Försök igen.
+# välj mellan följande år:
+# .
+# ..
+# 2022
+# 2024
+# input: ?(#/¤&
+# År ?(#/¤& finns inte. Försök igen.
+# välj mellan följande år:
+# .
+# ..
+# 2022
+# 2024
+# input: 2024
 # välj mellan följande månader:
 # .
 # ..
 # 05
-# 05
+# input: 05
 # välj mellan följande sidor:
 # .
 # ..
 # rumpnisse [06-05-2024]
 # test1 [06-05-2024]
 # Vileh [06-05-2024]
-# Vileh [06-05-2024]
+# input: Vileh [06-05-2024]
 # den här dagen skrev du följande:
 # Vileh [06-05-2024]
-
+#  (innehåll nedan)
 # Jätebra
-
-
 
 
 

@@ -27,6 +27,17 @@ def dagobok(svar)
     end 
 end 
 
+
+# Beskrivning:         ...
+#Input 1 : 
+# Return:              Klass - beskrivning
+# Exempel:         
+# ...  ...  ...  ...
+# ...  ...  ...  ...
+# ...  ...  ...  ...
+# ...  ...  ...  ...               
+# Datum: 06-05-2024
+# Namn: Theodor Svarre   
 def new_file()
     i = 1
     year = Time.now.strftime("%y")
@@ -55,10 +66,27 @@ def new_file()
     new_f.close
 end
 
+# Beskrivning:         ...
+#Input 1 : 
+# Return:              Klass - beskrivning
+# Exempel:         
+# ...  ...  ...  ...
+# ...  ...  ...  ...
+# ...  ...  ...  ...
+# ...  ...  ...  ...               
+# Datum: 06-05-2024
+# Namn: Theodor Svarre  
 def read()
-    puts "välj mellan följande år:"
-    puts Dir.entries("years/") 
-    y_input = gets.chomp
+    i = 1 
+
+    while i > 0 
+        puts "välj mellan följande år:"
+        puts Dir.entries("years/") 
+        y_input = gets.chomp
+        if y_input != Dir.entries("years/") 
+            puts "år #{y_input} är finns inte"
+        end 
+    end 
 
     puts "välj mellan följande månader:"
     puts Dir.entries("years/#{y_input}") 
@@ -79,6 +107,16 @@ def read()
     }
 end
 
+# Beskrivning:         ...
+#Input 1 : 
+# Return:              Klass - beskrivning
+# Exempel:         
+# ...  ...  ...  ...
+# ...  ...  ...  ...
+# ...  ...  ...  ...
+# ...  ...  ...  ...               
+# Datum: 06-05-2024
+# Namn: Theodor Svarre  
 def date_check()
     year = Time.now.strftime("%y")
     month = Time.now.strftime("%m")

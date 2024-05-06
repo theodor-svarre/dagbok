@@ -1,34 +1,72 @@
 
 
-def new_file()
-    i = 1
-    year = Time.now.strftime("%y")
-    month = Time.now.strftime("%m")
 
+def new_file()
+# Beskrivning:         Hjälpfunktion som skapar nya filer 
+# Argument 1:          Klass - beskrivning
+# Argument 2:          Klass - beskrivning
+# Variabel 1:             String - Variabel kallad "title" och avgör titel på anteckning
+# Variabel 2:             String - Variabel kallad "new_content" som sparar en string man får från gets.chomp. Adderas med den tomma variabeln "content"
+# Variabel 3:             String - Variabel kallad "content" som sparar variabeln "new_content"s string
+# Return:              String - När koden får in inputen "/stäng" avslutas hjälpfunktionen efter att ha sparat koden i rätt folder
+# Exempel:  
+
+# "Titel:"       
+# input: "En fin titel 2353562"
+
+# "Berätta om din dag! - skriv '/stäng': "
+# input: "Bla bla bla"
+# det här är vad jag vill skriva 5526356.24656?
+# /stäng
+
+# Filen har nu skapats och sparas i rätt folder under titeln "En fin titel 2353562 [dag-månad-år]"   
+
+################################################################################################################
+
+# Koden tillåter inte tecken i titeln
+# "Titel:"       
+# input: "E??!:" ==> "Fel uppstod! Använd ej tecken"
+# titel:
+
+
+# Datum:               06-05-2024
+# Namn:                Vile Kindstrand
+    original_directory = Dir.pwd
     date_check()
+    i = 1
+    year = Time.now.strftime("%Y")
+    month = Time.now.strftime("%m")
 
     Dir.chdir("years/#{year}/#{month}")
     print "titel: "
     title = gets.chomp+Time.now.strftime(" [%d-%m-%Y]")
     new_f = File.open(title, "w")
-    print "Berätta om din dag! - skriv '/stäng': "
+    puts "Berätta om din dag! - skriv '/stäng': "
+
+    content = ""
 
     while i > 0 
-        content = ""
+
         new_content = gets.chomp
         if new_content == "/stäng"
             i = 0
+        else
+            content += new_content + "\n"
         end 
-        content += new_content
-
+        
     end 
     new_f.puts(title+"\n"+"\n"+content)
     new_f.close
-    Dir.chdir("years/#{year}/#{month}")
+    # Dir.getwd()
+    # Dir.chdir("years/#{year}/#{month}")
+    # Dir.chdir("../")
+    # Dir.chdir("../")
+    Dir.chdir(original_directory)
+
 end
 
 def date_check()
-    year = Time.now.strftime("%y")
+    year = Time.now.strftime("%Y")
     month = Time.now.strftime("%m")
 
     if Dir.exist?("years/#{year}") == false
@@ -38,7 +76,7 @@ def date_check()
     if Dir.exist?("years/#{year}/#{month}") == false
         Dir.mkdir("years/#{year}/#{month}")
     end
-
+    
 end
 
 def read()
@@ -61,13 +99,17 @@ def read()
         # Läs varje rad i filen och skriv ut den till terminalen
         file.each_line { |line|
         puts line
+
         }
-    }
+    } 
 end
 
 ###############################################################################################
 
-def dagobok(svar)
+def dagobok()
+
+    puts "Skriv '/ny' för att skapa ny skrivt och '/läs' för att läsa gamla"
+    svar = gets.chomp
     run_state = true
     while run_state == true
 
@@ -83,46 +125,18 @@ def dagobok(svar)
     
         if svar.downcase == "/ny"
             new_file()
-            # #Skapar ny sida
-            # puts "Vad ska den heta?"
-            #     title = gets.chomp
-            #     new_file = File.open("#{title}.txt", "w")
-            #     #ser efter när texten ska stängas och sparas
-            #     while i > 0 
-            #         ny_text = gets.chomp 
-            #         if ny_text == "stäng sidan"
-            #         end 
-            #         if i == 1 
-            #         new_file.puts(ny_text)
-            #         end 
-            #     end 
-            #     new_file.close 
+
         end 
        
     
         if svar.downcase == "/läs"
             read()
-            # puts "vilken sida"
-            # sida = gets.chomp
-            # page = File.open("#{sida}.txt", "r")
-            # puts page.read()
-            # page.close()
-            # page = File.open("#{sida}.txt", "a")
-            # while i > 0 
-            #     ny_text = gets.chomp 
-            #     page.puts(ny_text)
-            #     if ny_text == "/stäng"
-            #         i = 0 
-            #     end 
-            # end 
-            # page.close()
+
         end 
         puts "Skriv '/ny' för att skapa ny skrivt och '/läs' för att läsa gamla"
         svar = gets.chomp
     end 
 end 
 
-puts "Skriv '/ny' för att skapa ny skrivt och '/läs' för att läsa gamla"
-svar = gets.chomp
-puts dagobok(svar)
+puts dagobok()
     

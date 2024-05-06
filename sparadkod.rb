@@ -1,67 +1,73 @@
-
-
-
 def new_file()
     # Beskrivning:         Hjälpfunktion som skapar nya filer 
-    # Argument 1:          Klass - beskrivning
-    # Argument 2:          Klass - beskrivning
-    # Variabel 1:             String - Variabel kallad "title" och avgör titel på anteckning
-    # Variabel 2:             String - Variabel kallad "new_content" som sparar en string man får från gets.chomp. Adderas med den tomma variabeln "content"
-    # Variabel 3:             String - Variabel kallad "content" som sparar variabeln "new_content"s string
+    # Variabel 1:          String - Variabel kallad "title" och avgör titel på anteckning
+    # Variabel 2:          String - Variabel kallad "new_content" som sparar en string man får från gets.chomp. Adderas med den tomma variabeln "content"
+    # Variabel 3:          String - Variabel kallad "content" som sparar variabeln "new_content"s string
     # Return:              String - När koden får in inputen "/stäng" avslutas hjälpfunktionen efter att ha sparat koden i rätt folder
     # Exempel:  
     
     # "Titel:"       
     # input: "En fin titel 2353562"
-    
     # "Berätta om din dag! - skriv '/stäng': "
     # input: "Bla bla bla"
     # det här är vad jag vill skriva 5526356.24656?
     # /stäng
-    
     # Filen har nu skapats och sparas i rätt folder under titeln "En fin titel 2353562 [dag-månad-år]"   
     
-    ################################################################################################################
+    # Exempel 2:
     
-    # Koden tillåter inte tecken i titeln
+    # Koden tillåter även tecken i titeln
     # "Titel:"       
-    # input: "E??!:" ==> "Fel uppstod! Använd ej tecken"
-    # titel:
+    # input: "E??!:"
+    # titel: "E??!:
     
     
     # Datum:               06-05-2024
-    # Namn:                Theodor Svarre Vile Kindstrand
-        original_directory = Dir.pwd
+    # Namn:                Vile Kindstrand, Theodor Svarre
+        original_directory = Dir.pwd #sparadar den ursprungliga sökvägen, years
         date_check()
-        i = 1
         year = Time.now.strftime("%Y")
         month = Time.now.strftime("%m")
     
         Dir.chdir("years/#{year}/#{month}")
-        print "titel: "
-        title = gets.chomp+Time.now.strftime(" [%d-%m-%Y]")
+        
+        puts "Title:"
+        title = gets.chomp.gsub(/[^0-9A-Za-z\s]/, '') + Time.now.strftime(" [%d-%m-%Y]") # Med .gsub(/[^0-9A-Za-z\s]/, '') kan man även skriva ? som en titel.
         new_f = File.open(title, "w")
         puts "Berätta om din dag! - skriv '/stäng': "
     
         content = ""
+
+        i = 1 
     
         while i > 0 
-    
             new_content = gets.chomp
             if new_content == "/stäng"
                 i = 0
             else
                 content += new_content + "\n"
             end 
-            
         end 
         new_f.puts(title+"\n"+"\n"+content)
         new_f.close
-        Dir.chdir(original_directory)
-    
+        Dir.chdir(original_directory) #Kallar fram till den ursprungliga sökvägen, years
     end
+
+    #----------------------------------------------------------------------------
     
     def date_check()
+    # Beskrivning:         Hjälpfunktion som kollar vilket datum det är. Om en folder med sagda datum inte finns skapar den det
+    # Variabel 1:          String - Tar ut vilket år det är m.h.a Time.now.strftime() metod
+    # Variabel 2:          String - Tar ut vilken månad det är m.h.a Time.now.strftime() metod
+    
+    # Return:              Om datum stämmer 
+    # Exempel:  
+    
+    
+    
+    
+    # Datum:               06-05-2024
+    # Namn:                Vile Kindstrand, Theodor Svarre
         year = Time.now.strftime("%Y")
         month = Time.now.strftime("%m")
     
@@ -74,7 +80,9 @@ def new_file()
         end
         
     end
-    
+
+#----------------------------------------------------------------------------
+
     def read()
     
         i = 0 
@@ -129,7 +137,9 @@ def new_file()
         } 
     end
     
-    def dagobok()
+    #----------------------------------------------------------------------------
+    
+    def dagbok()
     
         puts "Skriv '/ny' för att skapa ny skrivt och '/läs' för att läsa gamla"
         svar = gets.chomp
@@ -150,6 +160,7 @@ def new_file()
                 new_file()
     
             end 
+           
         
             if svar.downcase == "/läs"
                 read()
@@ -160,4 +171,5 @@ def new_file()
         end 
     end 
     
-    puts dagobok()
+    puts dagbok()
+    

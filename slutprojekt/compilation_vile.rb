@@ -94,11 +94,12 @@ end
 
 def read()
     # Beskrivning:         Hjälpfunktion som hanterar läsning av gamla filer genom att navigera genom folder
-# Variabel 1:          String - Tar ut vilket år det är m.h.a Time.now.strftime() metod
-# Variabel 2:          String - Tar ut vilken månad det är m.h.a Time.now.strftime() metod
+# Variabel 1:          String - "y_input" tar in input från gets.chomp som representerar vilket år som söks
+# Variabel 2:          String - "m_input" tar in input från gets.chomp som representerar vilken månad som söks inom valda år
+# Variabel 3:          String - "d_input" tar in input från gets.chomp som representerar vilken fil som söks inom valda år och månad
 # Argument 1:          Klass - Vi använder oss ej av argument i den här funktionen eftersom att de enda variablerna är beroende av tiden, vilket hämtas i början av funktionen. 
 
-# Return:              Om folders med datum ej finns (år respektive månad) skapas nödvändiga folders, annars sker ingenting
+# Return:              Returnar tillslut den valda filen som den printar ut i terminalen
 
 # Exempel:  
 # puts Dir.exist?("years/#{year}") ==> False ==> skapar ny folder för år
@@ -110,6 +111,7 @@ def read()
 
 # Datum:               06-05-2024
 # Namn:                Vile Kindstrand, Theodor Svarre
+
     puts "välj mellan följande år:"
     puts Dir.entries("years/") 
     y_input = gets.chomp

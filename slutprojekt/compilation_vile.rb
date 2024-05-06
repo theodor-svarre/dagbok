@@ -3,25 +3,21 @@
 
 def new_file()
 # Beskrivning:         Hjälpfunktion som skapar nya filer 
-# Argument 1:          Klass - beskrivning
-# Argument 2:          Klass - beskrivning
-# Variabel 1:             String - Variabel kallad "title" och avgör titel på anteckning
-# Variabel 2:             String - Variabel kallad "new_content" som sparar en string man får från gets.chomp. Adderas med den tomma variabeln "content"
-# Variabel 3:             String - Variabel kallad "content" som sparar variabeln "new_content"s string
+# Variabel 1:          String - Variabel kallad "title" och avgör titel på anteckning
+# Variabel 2:          String - Variabel kallad "new_content" som sparar en string man får från gets.chomp. Adderas med den tomma variabeln "content"
+# Variabel 3:          String - Variabel kallad "content" som sparar variabeln "new_content"s string
 # Return:              String - När koden får in inputen "/stäng" avslutas hjälpfunktionen efter att ha sparat koden i rätt folder
 # Exempel:  
 
 # "Titel:"       
 # input: "En fin titel 2353562"
-
 # "Berätta om din dag! - skriv '/stäng': "
 # input: "Bla bla bla"
 # det här är vad jag vill skriva 5526356.24656?
 # /stäng
-
 # Filen har nu skapats och sparas i rätt folder under titeln "En fin titel 2353562 [dag-månad-år]"   
 
-################################################################################################################
+# Exempel 2:
 
 # Koden tillåter inte tecken i titeln
 # "Titel:"       
@@ -30,7 +26,7 @@ def new_file()
 
 
 # Datum:               06-05-2024
-# Namn:                Vile Kindstrand
+# Namn:                Vile Kindstrand, Theodor Svarre
     original_directory = Dir.pwd
     date_check()
     i = 1
@@ -66,6 +62,18 @@ def new_file()
 end
 
 def date_check()
+# Beskrivning:         Hjälpfunktion som kollar vilket datum det är. Om en folder med sagda datum inte finns skapar den det
+# Variabel 1:          String - Tar ut vilket år det är m.h.a Time.now.strftime() metod
+# Variabel 2:          String - Tar ut vilken månad det är m.h.a Time.now.strftime() metod
+
+# Return:              Om datum stämmer 
+# Exempel:  
+
+
+
+
+# Datum:               06-05-2024
+# Namn:                Vile Kindstrand, Theodor Svarre
     year = Time.now.strftime("%Y")
     month = Time.now.strftime("%m")
 
@@ -106,7 +114,7 @@ end
 
 ###############################################################################################
 
-def dagobok()
+def dagbok()
 
     puts "Skriv '/ny' för att skapa ny skrivt och '/läs' för att läsa gamla"
     svar = gets.chomp
@@ -138,5 +146,5 @@ def dagobok()
     end 
 end 
 
-puts dagobok()
+puts dagbok()
     
